@@ -169,6 +169,7 @@ If it is succesful you should see a json payload return that looks like this:
 We'll need to generate AWS CLI credits from IAM User in order to the user AWS CLI.
 
 <br>
+<<<<<<< HEAD
 
 # Issue #9 Terraform random bucket name
 
@@ -259,6 +260,8 @@ The Terraform Lock File should be committed to your Version Control System (VSC)
 - The comparison between the current state of the resources and the changes that will be made to the resources
 
 <br>
+=======
+>>>>>>> 97a3f77 (#7 Refactor AWS CLI in bash script)
 
 ## References
 - `chmod`: https://en.wikipedia.org/wiki/Chmod
