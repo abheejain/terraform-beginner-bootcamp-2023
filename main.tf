@@ -1,13 +1,17 @@
 terraform {
-  required_providers {
-    random = {
-      source  = "hashicorp/random"
-      version = "3.5.1"
-    }
+  # backend "remote" {
+  #   hostname     = "app.terraform.io"
+  #   organization = "Equinox9"
+  # }
 
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.16.2"
+  # workspaces {
+  #   name = "terra-house-1"
+  # }
+  # Generated when created Workspace in Terraform Cloud 
+  cloud {
+    organization = "Equinox9"
+    workspaces {
+      name = "terra-house-1"
     }
   }
 }
