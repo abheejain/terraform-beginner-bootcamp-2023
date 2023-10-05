@@ -202,7 +202,7 @@ Applies the changes planned in the `terraform plan`, meaning the command execute
 
 #### `terraform destroy`
 
-- `terraform destory`: destroys all the resources that you created with the command `terraform apply`. This is the safest way to get rid of the resources. After having created resources with Terraform, cleaning up resources may accidently leave out some resources running undestroy. This may incur unexpected charges (and yes, I got charged 30 USD for the mistake. Shhh... 🤫 although this is not a secret.)
+- `terraform destory`: destroys all the resources that you created with the command `terraform apply`. This is the safest way to get rid of the resources. After having created resources with Terraform, cleaning up resources may accidently leave out some resources running undestroy. This may incur unexpected charges.
 
 #### Terraform Lock Files
 
@@ -266,6 +266,36 @@ The Terraform Lock File should be committed to your Version Control System (VSC)
 <br>
 =======
 >>>>>>> 97a3f77 (#7 Refactor AWS CLI in bash script)
+
+## Week 0 Terraform Cloud and Terraform login
+
+- Terraform workspace: a container in Terraform Cloud for infrastructure state, configurations, and settings. 
+- Terraform project: an overarching effort or goal, potentially consisting of multiple Terraform Cloud workspaces.
+
+### Issues with Terraform Cloud & Gitpod Workspace
+
+When attempting to run `terraform login`, it will launch a wiswig view in bash to generate a token. However, this does not work as expected in Gitpod VS code in the browser. The workaround is to manually generate a token in the [Terraform Cloud console](https://app.terraform.io/app/settings/tokens). 
+
+Then create the credentials file manually: 
+
+```
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+
+Then paste the following.
+
+```
+{
+    "credentials": {
+        "app.terraform.io": {
+            "token": "You generate this token on Terraform Cloud Console."
+        }
+    }
+}
+```
+
+<br>
 
 ## References
 - `chmod`: https://en.wikipedia.org/wiki/Chmod
