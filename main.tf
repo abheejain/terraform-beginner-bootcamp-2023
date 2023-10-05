@@ -1,13 +1,4 @@
 terraform {
-  # backend "remote" {
-  #   hostname     = "app.terraform.io"
-  #   organization = "Equinox9"
-  # }
-
-  # workspaces {
-  #   name = "terra-house-1"
-  # }
-  # Generated when created Workspace in Terraform Cloud 
   cloud {
     organization = "Equinox9"
     workspaces {
