@@ -295,6 +295,11 @@ Then paste the following.
 }
 ```
 
+## Week 0 Terraform Cloud and Terraform login
+
+We have automated this workaround with the following bash script [bin/generate_tfrc_credentials]
+
+
 <br>
 
 ## References
