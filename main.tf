@@ -1,25 +1,4 @@
-terraform {
-  cloud {
-    organization = "Equinox9"
-    workspaces {
-      name = "terra-house-1"
-    }
-  }
-}
-
-provider "aws" {
-
-}
-
-provider "random" {
-  #   keepers = {
-  #     # Generate a new ID each time we switch to a new AMI ID.
-  #     ami_id = var.ami_id
-  #   }
-
-  #   byte_length = 8
-}
-
+# https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
 resource "random_string" "bucket_name" {
   length  = 16
   special = false
@@ -28,19 +7,13 @@ resource "random_string" "bucket_name" {
   #   override_special = "!@#$%&*()-_=+[]{}<>:?"
 }
 
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
 resource "aws_s3_bucket" "example" {
+   # Bucket Naming Rules
+  #https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html?icmpid=docs_amazons3_console
   bucket = random_string.bucket_name.result
 
   tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
+    UserUuid = var.user_uuid
   }
-}
-
-output "random_bucket_name_id" {
-  value = random_string.bucket_name.id
-}
-
-output "random_bucket_name_result" {
-  value = random_string.bucket_name.result
 }
