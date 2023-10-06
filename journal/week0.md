@@ -1,6 +1,6 @@
-# Terraform Beginner Bootcamp 2023
+# Terraform Beginner Bootcamp 2023 - Week 0
 
-  * [Semantic Versioning](#semantic-versioning)
+  * [Semantic Versioning](#semantic-versioning-mage)
   * [Install the Terraform CLI](#install-the-terraform-cli)
     + [Considerations with the Terraform CLI changes](#considerations-with-the-terraform-cli-changes)
   * [Considerations for Linux Distribution](#considerations-for-linux-distribution)
@@ -25,17 +25,15 @@
       - [Terraform Directory](#terraform-directory)
       - [**Terraform Commands**](#--terraform-commands--)
       - [Change set](#change-set)
-- [<br>](#-br-)
-  * [Week 0 Terraform Cloud and Terraform login](#week-0-terraform-cloud-and-terraform-login)
-    + [Issues with Terraform Cloud & Gitpod Workspace](#issues-with-terraform-cloud---gitpod-workspace)
-  * [Week 0 Terraform Cloud and Terraform login](#week-0-terraform-cloud-and-terraform-login-1)
-  * [References](#references)
+ 
+- [Issues with Terraform Cloud & Gitpod Workspace](#issues-with-terraform-cloud---gitpod-workspace)
+- [References](#references)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 
 
-## Semantic Versioning
+## Semantic Versioning :mage:
 
 This project is going utilize semantic versioning for its tagging.
 More to know here: [semver.org](https://semver.org/)
