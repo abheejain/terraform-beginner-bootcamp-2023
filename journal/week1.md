@@ -128,11 +128,11 @@ This is a built in terraform function to check the existance of a file.
 condition = fileexists(var.error_html_filepath)
 ```
 
-https://developer.hashicorp.com/terraform/language/functions/fileexists
+Ref: https://developer.hashicorp.com/terraform/language/functions/fileexists
 
 ### Filemd5
 
-https://developer.hashicorp.com/terraform/language/functions/filemd5
+Ref: https://developer.hashicorp.com/terraform/language/functions/filemd5
 
 ### Path Variable
 
