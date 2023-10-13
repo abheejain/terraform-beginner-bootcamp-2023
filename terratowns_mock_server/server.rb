@@ -34,14 +34,11 @@ class Home
     'video-valley',
     'the-nomad-pad',
     'gamers-grotto'
-  ] }  # has to be on the same line - as per syntax
-  
+  ] }
   # visible to all users
   validates :name, presence: true
-
   # visible to all users
   validates :description, presence: true
-
   # we want to lock this down to only be from cloudfront
   validates :domain_name, 
     format: { with: /\.cloudfront\.net\z/, message: "domain must be from .cloudfront.net" }
@@ -74,6 +71,7 @@ class TerraTownsMockServer < Sinatra::Base
     end
   end
 
+  # return a harcoded access token
   def x_access_code
     return '9b49b3fb-b8e9-483c-b703-97ba88eef8e0'
   end
@@ -85,7 +83,7 @@ class TerraTownsMockServer < Sinatra::Base
   def find_user_by_bearer_token
     # https://swagger.io/docs/specification/authentication/bearer-authentication/
     auth_header = request.env["HTTP_AUTHORIZATION"]
-    # Check if the Authorization header exists?
+    # Check if the Authorization header exists? 
     if auth_header.nil? || !auth_header.start_with?("Bearer ")
       error 401, "a1000 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
     end
@@ -93,7 +91,6 @@ class TerraTownsMockServer < Sinatra::Base
     # Does the token match the one in our database?
     # if we cant find it than return an error or if it doesn't match
     # code = access_code = token
-
     code = auth_header.split("Bearer ")[1]
     if code != x_access_code
       error 401, "a1001 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
@@ -153,6 +150,7 @@ class TerraTownsMockServer < Sinatra::Base
     # ensure our validation checks pass otherwise
     # return the errors
     unless home.valid?
+      # return the errors message back json
       error 422, home.errors.messages.to_json
     end
 
@@ -161,7 +159,6 @@ class TerraTownsMockServer < Sinatra::Base
     puts "uuid #{uuid}"
     # will mock our data to our mock databse
     # which just a global variable
-    
     $home = {
       uuid: uuid,
       name: name,
@@ -184,6 +181,7 @@ class TerraTownsMockServer < Sinatra::Base
     # checks for house limit
 
     content_type :json
+    # does the uuid for the home match the one in our mock database
     if params[:uuid] == $home[:uuid]
       return $home.to_json
     else
@@ -207,7 +205,6 @@ class TerraTownsMockServer < Sinatra::Base
     # Validate payload data
     name = payload["name"]
     description = payload["description"]
-    domain_name = payload["domain_name"]
     content_version = payload["content_version"]
 
     unless params[:uuid] == $home[:uuid]
@@ -216,9 +213,9 @@ class TerraTownsMockServer < Sinatra::Base
 
     home = Home.new
     home.town = $home[:town]
+    home.domain_name = $home[:domain_name]
     home.name = name
     home.description = description
-    home.domain_name = domain_name
     home.content_version = content_version
 
     unless home.valid?
@@ -240,8 +237,9 @@ class TerraTownsMockServer < Sinatra::Base
     end
 
     # delete from mock database
+    uuid = $home[:uuid]
     $home = {}
-    { message: "House deleted successfully" }.to_json
+    { uuid: uuid }.to_json
   end
 end
 
