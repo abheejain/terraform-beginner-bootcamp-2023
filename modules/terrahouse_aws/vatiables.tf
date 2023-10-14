@@ -7,6 +7,13 @@ variable "user_uuid" {
     error_message    = "The user_uuid value is not a valid UUID."
   }
 }
+
+variable "public_path" {
+  description = "The File path for Public Dir"
+  type        = string
+}
+
+
 # variable "bucket_name" {
 #   description = "Name of the S3 bucket"
 #   type        = string

@@ -13,12 +13,12 @@ terraform {
   #    name = "terra-house-1"
   #  }
   #}
-  #cloud {
-  #  organization = "Equinox9"
-  #  workspaces {
-  #    name = "terra-house-1"
-  #  }
-  #}
+  cloud {
+   organization = "Equinox9"
+   workspaces {
+     name = "terra-house-1"
+   }
+  }
 }
 
 provider "terratowns" {
@@ -27,10 +27,11 @@ provider "terratowns" {
   token=var.terratowns_access_token // get from the platform 
 }
 
-module "terrahouse_aws" {
+#host - 01
+module "home_thaifood" {
  source = "./modules/terrahouse_aws"
  user_uuid= var.teacherseat_user_uuid
- //bucket_name = var.bucket_name // Removed to get random bucket name
+ public_path = var.thaifood_public_path
  index_html_filepath = var.index_html_filepath
  error_html_filepath = var.error_html_filepath
  content_version = var.content_version
@@ -42,7 +43,30 @@ resource "terratowns_home" "home" {
   description = <<DESCRIPTION
 Thai vegetarian food is a delightful and aromatic cuisine rich in flavors, utilizing ingredients like tofu, vegetables, coconut milk, and Thai spices. Dishes such as Pad Thai, Green Curry, and Som Tum (Green Papaya Salad) are popular options for vegetarians.
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_thaifood.domain_name
+  #domain_name = "3hdq32dgz.cloudfront.net" // change this if you get error in 'resource'
+  town = "missingo"
+  content_version = 1
+}
+
+
+#Host - 02 
+module "home_thaiband" {
+ source = "./modules/terrahouse_aws"
+ user_uuid= var.teacherseat_user_uuid
+ public_path = var.thaiband_public_path
+ index_html_filepath = var.index_html_filepath
+ error_html_filepath = var.error_html_filepath
+ content_version = var.content_version
+ assets_path = var.assets_path
+}
+
+resource "terratowns_home" "home" {
+  name = "Roman Anton Band"
+  description = <<DESCRIPTION
+Roman Anton brings you art, books, music, and related creations through this one-of-a-kind website. All the creations are originals made by Roman Anton.  The Roman Anton Team invites you to take a look at the many offerings inside
+DESCRIPTION
+  domain_name = module.home_thaiband.cloudfront_url
   #domain_name = "3hdq32dgz.cloudfront.net" // change this if you get error in 'resource'
   town = "missingo"
   content_version = 1
