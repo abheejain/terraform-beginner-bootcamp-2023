@@ -1,12 +1,10 @@
 terratowns_endpoint="https://terratowns.cloud/api"
 thaifood = {
-    thaifood_public_path="/workspace/terraform-beginner-bootcamp-2023/public/thaifood"
-    thaifood_content_version=1
+    public_path="/workspace/terraform-beginner-bootcamp-2023/public/thaifood"
+    content_version=1
 }
 
 thaiband = {
-    thaiband_public_path="/workspace/terraform-beginner-bootcamp-2023/public/thaiband"
-    thaiband_content_version=1
+    public_path="/workspace/terraform-beginner-bootcamp-2023/public/thaiband"
+    content_version=1
 }
-
-
