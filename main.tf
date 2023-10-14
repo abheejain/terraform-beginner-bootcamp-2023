@@ -68,6 +68,6 @@ Roman Anton brings you art, books, music, and related creations through this one
 DESCRIPTION
   domain_name = module.home_thaiband_hosting.domain_name
   #domain_name = "3hdq32dgz.cloudfront.net" // change this if you get error in 'resource'
-  town = "missingo"
+  town = "melomaniac-mansion"
   content_version = var.thaiband.content_version
 }
